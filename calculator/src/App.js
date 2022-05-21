@@ -22,6 +22,10 @@ function App() {
         <button onClick={() => { setDisplay(8) }} value={8}>8</button>
         <button onClick={() => { setDisplay(9) }} value={9}>9</button>
       </div>
+      <div>
+        <button onClick={() => { setDisplay(0) }} value={0}>0</button>
+      </div>
+
     </div>
   );
 }
