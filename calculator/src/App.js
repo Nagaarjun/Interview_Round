@@ -13,6 +13,7 @@ function App() {
     else {
       setDisplay(prevState => prevState + value);
     }
+    setIsAnswerDisplayed(false);
   }
 
   const handleAddition = (value) => {
@@ -27,9 +28,7 @@ function App() {
     if (value === "=") {
 
       let sum = entries.reduce((prev, curr) => { return prev + curr }, 0);
-      if (display !== "0") {
-        sum = sum + Number.parseInt(display);
-      }
+      sum = sum + Number.parseInt(display);
       setDisplay(sum.toString());
       setEntries([]);
       setIsAnswerDisplayed(true);
