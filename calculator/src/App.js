@@ -3,15 +3,34 @@ import React, { useState } from "react";
 import { Button } from './button';
 
 function App() {
-  const [entries, setEntries] = useState();
+  const [entries, setEntries] = useState([]);
   const [display, setDisplay] = useState("0");
-  const [isInitialState, setIsInitialState] = useState(false);
   const handleMultipleEntries = (value, reset) => {
     if (display === "0") {
       setDisplay(value);
     }
     else {
       setDisplay(prevState => prevState + value);
+    }
+  }
+
+  const handleAddition = (value) => {
+    if (value === "+") {
+      let ent = [...entries, Number.parseInt(display)];
+      // entries.push(Number.parseInt(display));
+      setEntries(ent);
+      setDisplay("0");
+    }
+  }
+  const updateDisplayAnswer = (value) => {
+    if (value === "=") {
+
+      let sum = entries.reduce((prev, curr) => { return prev + curr }, 0);
+      if (display !== "0") {
+        sum = sum + Number.parseInt(display);
+      }
+      setDisplay(sum.toString());
+      setEntries([]);
     }
   }
   return (
@@ -54,6 +73,12 @@ function App() {
         <Button onClick={() => {
           handleMultipleEntries("0");
         }} value={0}>0</Button>
+        <Button onClick={() => {
+          handleAddition("+");
+        }} value={"+"}>+</Button>
+        <Button onClick={() => {
+          updateDisplayAnswer("=");
+        }} value={"="}>=</Button>
       </div>
 
     </div >
