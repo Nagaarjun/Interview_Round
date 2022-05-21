@@ -5,8 +5,9 @@ import { Button } from './button';
 function App() {
   const [entries, setEntries] = useState([]);
   const [display, setDisplay] = useState("0");
+  const [isAnswerDisplayed, setIsAnswerDisplayed] = useState(false);
   const handleMultipleEntries = (value, reset) => {
-    if (display === "0") {
+    if (display === "0" || isAnswerDisplayed) {
       setDisplay(value);
     }
     else {
@@ -31,6 +32,7 @@ function App() {
       }
       setDisplay(sum.toString());
       setEntries([]);
+      setIsAnswerDisplayed(true);
     }
   }
   return (
@@ -79,6 +81,11 @@ function App() {
         <Button onClick={() => {
           updateDisplayAnswer("=");
         }} value={"="}>=</Button>
+      </div>
+      <div>
+        <Button onClick={() => {
+          setDisplay("0");
+        }} value={"Reset"} />
       </div>
 
     </div >
